@@ -8,7 +8,7 @@ def show_main(request):
 
 
 
-        'name' : 'Sita Amira Syarifah',
+        'author' : 'Sita Amira Syarifah',
         'class' : 'PBP B'
     }
 
