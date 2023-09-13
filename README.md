@@ -3,6 +3,8 @@
 #NPM : 2206023023
 PBP B
 
+Link Aplikasi Adaptable : https://smart.adaptable.app/main
+
 1. Cara saya mengimplementasikan checklist tersebut adalah :
    - Membuat sebuah proyek Django baru :
      Pertama saya membuat repository baru di Github dengan nama sesuai yang saya inginkan, yaitu "SMart" untuk proyek baru dan melakukan git clone melalui command prompt. Setelah cloning dan muncul di direktori lokal, saya membuat file "requirements.txt" serta menginstal Django untuk deployment aplikasi.
@@ -25,7 +27,12 @@ PBP B
    - Melakukan deployment ke Adaptable
      Mengakses adaptable.io kemudian create new app, connect dengan repository "SMart" yang sudah tersedia di GitHub, kemudian memilih PythonApp template dan PostgreSQL. Lalu sesuaikan versi python sesuai yang kita miliki dan menambahkan command "python manage.py migrate && gunicorn SMart.wsgi" lalu isi nama aplikasi sesuai yang diinginkan, dan aktifkan HTTP Listener on PORT. Terakhir, tinggal menunggu deployment aplikasi selesai.
 
-3. Virtual environment sangat disarankan dalam pengembangan aplikasi berbasis Django dan pengembangan perangkat lunak pada umumnya. Alasannya adalah :
+2. Bagan request client ke web aplikasi berbasis Django
+   ![WhatsApp Image 2023-09-13 at 07 38 41](https://github.com/sitaamirasyarifah/SMart/assets/122429830/9ea8f0b2-4028-4fa9-aa5b-25b925fe1bc0)
+
+
+
+4. Virtual environment sangat disarankan dalam pengembangan aplikasi berbasis Django dan pengembangan perangkat lunak pada umumnya. Alasannya adalah :
 - Virtual environment memungkinkan kita untuk membuat lingkungan isolasi yang independen untuk setiap proyek. Ini berarti setiap proyek dapat memiliki dependensi yang berbeda tanpa menganggu satu sama lain. Misalnya, proyek A mungkin memerlukan versi Django tertentu, sedangkan proyek B memerlukan versi yang berbeda. Dengan virtual environment, kita dapat memenuhi persyaratan khusus setiap proyek tanpa konflik. 
 - Dengan virtual environment, kita dapat mengelola dependensi proyek secara lebih efektif. Kita dapat menginstall, menghapus, dan mengganti dependensi proyek tanpa memengaruhi proyek lainnya.
 - Ketika bekerja dalam tim, virtual environment memungkinkan semua anggota tim menggunakan lingkungan yang serupa, sehingga mengurangi masalah terkait dengan perbedaan konfigurasi.
