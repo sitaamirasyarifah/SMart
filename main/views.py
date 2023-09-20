@@ -9,14 +9,19 @@ from main.models import Product
 
 def show_main(request):
     products = Product.objects.all()
+    jumlah = Product.objects.count()
+
 
     context = {
         'name': 'Sita Amira Syarifah', 
         'class': 'PBP B', 
-        'products': products
+        'products': products ,
+        'jumlah' : jumlah 
     }
 
     return render(request, "main.html", context)
+
+
 
 def create_product(request):
     form = ProductForm(request.POST or None)
