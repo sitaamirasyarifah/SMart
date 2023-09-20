@@ -3,6 +3,59 @@
 #NPM : 2206023023
 PBP B
 
+Tugas 3
+
+1. Perbedaan antara form POST dan form GET dalam Django :
+a) POST mengirimkan data/nilai secara langsung ke action tanpa menampilkannya di URL.
+b) GET menampilkan data/nilai di URL yang dapat dilihat oleh semua pengguna, sebelum ditampung oleh action.
+c) POST tidak memiliki batasan jumlah data yang dapat dikirimkan.
+d) GET memiliki batasan maksimal karakter, yaitu 2047 karakter.
+e) POST biasanya digunakan untuk mengirimkan data yang bersifat sensitif dan penting, contohnya password. Data tersebut biasanya akan diperbaharui atau dihapus dari server
+f) GET cocok digunakan jika data bersifat publik dan ingin dtampilkan di URL, misalnya saat melakukan pencarian (data diambil dari server).
+g) POST lebih aman karena dilindungi oleh token CSRF (Cross-Site-Request Forgery) untuk mencegah serangan CSRF dan data tidak terlihat di URL.
+h) GET kurang aman karena datanya terlihat di URL.
+i) POST digunakan untuk menerima semua request yang bisa mengubah server.
+j) GET digunakan untuk mengubah data yang diterima dalam bentuk URL.
+k) POST digunakan untuk data yang dapat diproses dan dimodifikasi.
+l) GET digunakan untuk mengambil data yang tidak mempengaruhi server.
+
+2. Perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data adalah :
+Umumnya, HTML dipakai untuk mengatur bagaimana suatu data ditampilkan seperti menampilkan konten pada browser, sedangkan XML dan JSON dipakai untuk menyimpan dan mengirim data. Perbedaan antara XML dan JSON terdapat pada formatnya. JSON menggunakan {} (kurung kurawal) dan lebih mudah dibaca. Adapun XML menggunakan start dan end tag seperti HTML, dan lebih aman dibandingkan JSON.
+
+3. JSON sering digunakan dalam pertukaran data antara aplikasi web modern karena representasi datanya yang lebih mudah dibaca oleh manusia dikarenakan strukturnya yang sederhana. JSON juga mendukung berbagai jenis data, seperti teks, angka, objek, etc. JSON juga cocok untuk penggunaan di aplikasi web yang memanfaatkan JavaScript dan AJAX (Asynchronous JavaScript and XML). Selain itu, JSON memiliki struktur yang ringan dan penguraian servernya mudah dilakukan oleh berbagai bahasa pemrograman khususnya JavaScript dan memiliki overhead yang lebih rendah dibandingkan XML.
+
+
+4. Cara saya dalam mengimplementasikan checklist tugas secara step by step adalah :
+- Pertama, membuat template dasar pada file base.html -> mengubah setting.py sehingga base.html terdeteksi sebagai template dengan menambahkan kode 
+add 'DIRS': [BASE_DIR / 'templates'],. di Templates -> sesuaikan konten yang terdapat di main.html dengan template yang terdapat di base.html
+- Kedua, membuat file forms.py yang dapat menerima data produk baru dengan modelnya Product dan fieldsnya name, amount, price, dan description -> di file views.py yang terdapat pada direktori main, buat function create_product dengan request POST, agar data otomatis tersimpan saat mensubmit form.
+- Ketiga, import HttpResponse dan serializers.
+HTML: Fungsi show_main yang sebelumnya, saya menambahkan products pada context yang berisi semua object yang diinput pada form. Untuk mengambil semua objectnya, saya menggunakan Product.objects.all().
+XML: membuat fungsi show_xml yang dapat menerima request dan akan mereturn HttpResponse dengan parameter seperti berikut:
+    data = Product.objects.all()
+    return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+JSON (show_json): sama seperti xml, hanya saja pada bagian serializers dan content_type diubah menjadi json.
+JSON dan XML by id: mirip seperti tanpa id, tetapi object yang dicari difilter berdasarkan id. Kodenya hanya berbeda di bagian data = Product.objects.filter(pk=id).
+- Terakhir, membuat routing URL untuk masing masing views dengan cara mengimport 4 function yang sebelumnya telah dibuat serta menambahkan 4 path url (html sudah dikerjakan di tugas 2) pada file urls.py dibagian urlpatterns untuk keempat fungsi yang baru yang ditambahkan pada views.py sebelumnya.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============================================================================
+
+Tugas 2
 1. Cara saya mengimplementasikan checklist tersebut adalah :
 a) Membuat sebuah proyek Django baru :
    Pertama saya membuat repository baru di Github dengan nama sesuai yang saya inginkan, yaitu "SMart" untuk proyek baru dan melakukan git clone melalui command prompt. Setelah cloning dan muncul di direktori lokal, saya membuat file "requirements.txt" serta menginstal Django untuk deployment aplikasi.
