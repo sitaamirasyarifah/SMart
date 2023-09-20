@@ -3,7 +3,7 @@
 #NPM : 2206023023
 PBP B
 
-<<<<<<< HEAD
+
 Tugas 3
 
 1. Perbedaan antara form POST dan form GET dalam Django :
@@ -38,6 +38,14 @@ XML: membuat fungsi show_xml yang dapat menerima request dan akan mereturn HttpR
 JSON (show_json): sama seperti xml, hanya saja pada bagian serializers dan content_type diubah menjadi json.
 JSON dan XML by id: mirip seperti tanpa id, tetapi object yang dicari difilter berdasarkan id. Kodenya hanya berbeda di bagian data = Product.objects.filter(pk=id).
 - Terakhir, membuat routing URL untuk masing masing views dengan cara mengimport 4 function yang sebelumnya telah dibuat serta menambahkan 4 path url (html sudah dikerjakan di tugas 2) pada file urls.py dibagian urlpatterns untuk keempat fungsi yang baru yang ditambahkan pada views.py sebelumnya.
+
+5. Screenshot dari hasil akses URL pada Postman
+![Screenshot (48)](https://github.com/sitaamirasyarifah/SMart/assets/122429830/de53985f-b0a7-4c0b-840c-9a4138b38e98)
+![Screenshot (52)](https://github.com/sitaamirasyarifah/SMart/assets/122429830/a42ffc33-6ce3-47ed-abfe-9add1f77bcd2)
+![Screenshot (51)](https://github.com/sitaamirasyarifah/SMart/assets/122429830/5a0322c2-452d-4f33-8384-de5d6a555340)
+![Screenshot (50)](https://github.com/sitaamirasyarifah/SMart/assets/122429830/8608cbef-b5b6-470d-9133-ca01131dd4d0)
+![Screenshot (49)](https://github.com/sitaamirasyarifah/SMart/assets/122429830/66616701-cffc-4869-b3f9-75b8d44dcd80)
+
 
 
 
