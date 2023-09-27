@@ -5,58 +5,80 @@ PBP B
 
 Tugas 4
 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
-Jawab :
-UserCreationForm pada Django merupakan function yang berfungsi untuk membuat akun user baru pada web application development Django. Dengan memanfaatkan function ini, user dapat membuat akun dengan mengisi field username, password1, dan password2 (confirm password).
-Kelebihan Django UserCreationForm : menerima karakter ASCII dan Unicode, bisa diasosiasikan dengan email (namun tidak wajib), mudah digunakan,  menyediakan fitur validasi otomatis seperti format username yang tepat, password yang sesuai dengan kebijakan keamanan, serta password konfirmasi yang harus sama dengan password sebelumnya.
-Kekurangan Django UserCreationForm : username tidak case-insensitive, serta akun tanpa password tidak bisa di reset passwordnya.
+> Jawab :
+> UserCreationForm pada Django merupakan function yang berfungsi untuk membuat akun user baru pada web application development Django. Dengan memanfaatkan function ini, user dapat membuat akun dengan mengisi field username, password1, dan password2 (confirm password).
+
+> Kelebihan Django UserCreationForm : menerima karakter ASCII dan Unicode, bisa diasosiasikan dengan email (namun tidak wajib), mudah digunakan,  menyediakan fitur validasi otomatis seperti format username yang tepat, password yang sesuai dengan kebijakan keamanan, serta password konfirmasi yang harus sama dengan password sebelumnya.
+
+> Kekurangan Django UserCreationForm : username tidak case-insensitive, serta akun tanpa password tidak bisa di reset passwordnya.
 
 2.Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
-Jawab : 
-Autentikasi : Proses yang memverifikasi akun user, apakah sudah sesuai username dan password yang diinput dengan yang ada pada database.
-Otorisasi: Proses yang menentukan apa saja yang user terautentikasi boleh lakukan.
-Why important?: Menjaga kemanan web aplikasi yang dibuat agar tidak sembarang orang bisa masuk. Selain itu, adanya otorisasi membuat data yang dimiliki terjaga privasinya karena hanya user yang diautentikasi saja yang dapat mengakses datanya masing-masing.
+> Jawab :
+
+> Autentikasi : Proses yang memverifikasi akun user, apakah sudah sesuai username dan password yang diinput dengan yang ada pada database.
+
+> Otorisasi: Proses yang menentukan apa saja yang user terautentikasi boleh lakukan.
+
+> Why important?: Menjaga kemanan web aplikasi yang dibuat agar tidak sembarang orang bisa masuk. Selain itu, adanya otorisasi membuat data yang dimiliki terjaga privasinya karena hanya user yang diautentikasi saja yang dapat mengakses datanya masing-masing.
 
 3.Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?
-Jawab :
-Cookies merupakan sepotong data berbentuk teks yang berisikan data dan informasi user yang disimpan dalam browser. Cookies berfungsi untuk meningkatkan personalisasi akun user dengan menyimpan data relevan user dan menampilkannya lagi ketika user mengakses browser yang sama. Dalam Django, kita bisa menambah cookies dengan mengimplementasikan function set_cookie('cookie_name', 'cookie-value') dan get('cookie_name'), kita juga bisa memberi waktu berakhirnya cookies tersebut dengan function set_cookie(key, value='', max_age=None, expires=None) selama None diubah dengan waktu yang diinginkan.
+> Jawab :
+> Cookies merupakan sepotong data berbentuk teks yang berisikan data dan informasi user yang disimpan dalam browser. Cookies berfungsi untuk meningkatkan personalisasi akun user dengan menyimpan data relevan user dan menampilkannya lagi ketika user mengakses browser yang sama. Dalam Django, kita bisa menambah cookies dengan mengimplementasikan function set_cookie('cookie_name', 'cookie-value') dan get('cookie_name'), kita juga bisa memberi waktu berakhirnya cookies tersebut dengan function set_cookie(key, value='', max_age=None, expires=None) selama None diubah dengan waktu yang diinginkan.
 
 4.Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
-Jawab :
-Umumnya, cookies dapat dikatakan aman dalam pengembangan web, namun terkadang masih ada risiko keamanan jika menggunakan cookies. Contohnya, jika ada informasi yang sensitif dalam akun user, maka seorang hacker dapat mencuri data tersebut dan menyalahgunakannya untuk hal lain. Contoh lain dapat terjadi sebaliknya, di mana seorang hacker dapat menyusupkan virus dan malware ke komputer kita dengan cara menyamarkannya dalam bentuk cookies. Namun, hal-hal tersebut harusnya tidak terjadi selama keamanan website masih tinggi dan tidak ada celah-celah yang bisa dieksploitasi.
+> Jawab :
+> Umumnya, cookies dapat dikatakan aman dalam pengembangan web, namun terkadang masih ada risiko keamanan jika menggunakan cookies. Contohnya, jika ada informasi yang sensitif dalam akun user, maka seorang hacker dapat mencuri data tersebut dan menyalahgunakannya untuk hal lain. Contoh lain dapat terjadi sebaliknya, di mana seorang hacker dapat menyusupkan virus dan malware ke komputer kita dengan cara menyamarkannya dalam bentuk cookies. Namun, hal-hal tersebut harusnya tidak terjadi selama keamanan website masih tinggi dan tidak ada celah-celah yang bisa dieksploitasi.
 
 5.Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
-Jawab :
-- Langkah pertama adalah saya membuat 3 fungsi baru, yaitu:
-1. register untuk membuat akun user. Dengan menggunakan UserCreationForm Django untuk menangani pembuatan akun baru bagi user.
-2. login_user untuk proses login. Dengan menggunakan function authenticate dan login yang diimport dari Django untuk menghandle autentikasi dan login saat autentikasi berhasil.
-3. logout_user untuk logout dari halaman utama.
+> Jawab :
+>
+> Langkah pertama adalah saya membuat 3 fungsi baru, yaitu:
 
-- Langkah kedua adalah saya membuat berkas baru yaitu register.html dan login.html untuk tampilan login dan registernya. Tak lupa juga untuk menambahkan tampilan tombol logout di berkas main.html.
+  > - register untuk membuat akun user. Dengan menggunakan UserCreationForm Django untuk menangani pembuatan akun baru bagi user.
 
-- Ketiga saya melakukan routing untuk tampilan login, logout, dan register.
+  > - login_user untuk proses login. Dengan menggunakan function authenticate dan login yang diimport dari Django untuk menghandle autentikasi dan login saat autentikasi berhasil.
 
-- Keempat, merestriksi akses halaman Main agar login terlebih dahulu dengan menambahkan kode @login_required(login_url='/login') di atas fungsi show_main.
+  > - logout_user untuk logout dari halaman utama.
 
-- Kelima, setelah menjalankan runserver, saya membuat dua akun baru di section register. Berikut akunnya:
+> Langkah kedua adalah saya membuat berkas baru yaitu register.html dan login.html untuk tampilan login dan registernya. Tak lupa juga untuk menambahkan tampilan tombol logout di berkas main.html.
+
+> Ketiga saya melakukan routing untuk tampilan login, logout, dan register.
+
+> Keempat, merestriksi akses halaman Main agar login terlebih dahulu dengan menambahkan kode @login_required(login_url='/login') di atas fungsi show_main.
+
+> Kelima, setelah menjalankan runserver, saya membuat dua akun baru di section register.
+  Berikut akunnya:
   username1: sita.amira; pass: Erza12345
   username2: erza.scarlet; pass: PBP12345
 
-- Keenam, menghubungkan model Product dengan User dengan cara:
-  > Mengimport modul User dari django.contrib.auth.models, lalu menambahkan model user ke class Product dengan menggunakan code user = models.ForeignKey(User, on_delete=models.CASCADE)
-  > Mengedit fungsi create_product agar Django tidak langsung menyimpan objek yg di buat ke database.
-  > Mengubah fungsi show_main pada bagian 'name' agar yang muncul merupakan username yang sedang login.
-  > Melakukan makemigration dan migrate.
-  > Mengimpor date time. Lalu di login_user membuat fungsi baru yang dapat menambahkan cookie.
-  > Menambahkan last_login pada show_main
-  > Mengubah logout_user untuk menghapus cookie setiap kali logout
-  > Menambahkan teks last login pada main.html agar muncul di tampilan layar.
 
-- Terakhir, untuk pengerjaan soal bonus:
-  > Membuat fungsi add_product dan sub_product pada views.py (subdirektori main) yang kodenya kurang lebih sama. Dengan mencari product berdasarkan id yang tombolnya dipencet. Kemudian menambahkan logika pengurangan atau pengurangan didalamnya.
-  > Melakukan routing pada urls.py untuk fungsi add_product dan sub_product
-  > Membuat tampilan buttonnya di main.html
-  > Membuat fungsi delete_product di views.py yang kodenya kurang lebih sama dengan add_product dan sub_product. Hanya saja product.save() tidak ada pada fungsi delete product.
-  > Melakukan routing pada urls.py untuk fungsi delete_product serta membuat tampilan buttonnya di main.html.
+> Keenam, menghubungkan model Product dengan User dengan cara:
+  > - Mengimport modul User dari django.contrib.auth.models, lalu menambahkan model user ke class Product dengan menggunakan code user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  > - Mengedit fungsi create_product agar Django tidak langsung menyimpan objek yg di buat ke database.
+
+  > - Mengubah fungsi show_main pada bagian 'name' agar yang muncul merupakan username yang sedang login.
+
+  > - Melakukan makemigration dan migrate.
+
+  > - Mengimpor date time. Lalu di login_user membuat fungsi baru yang dapat menambahkan cookie.
+
+  > - Menambahkan last_login pada show_main
+
+  > - Mengubah logout_user untuk menghapus cookie setiap kali logout
+
+  > - Menambahkan teks last login pada main.html agar muncul di tampilan layar.
+
+> Terakhir, untuk pengerjaan soal bonus:
+  > - Membuat fungsi add_product dan sub_product pada views.py (subdirektori main) yang kodenya kurang lebih sama. Dengan mencari product berdasarkan id yang tombolnya dipencet. Kemudian menambahkan logika pengurangan atau pengurangan didalamnya.
+
+  > - Melakukan routing pada urls.py untuk fungsi add_product dan sub_product
+
+  > - Membuat tampilan buttonnya di main.html
+
+  > - Membuat fungsi delete_product di views.py yang kodenya kurang lebih sama dengan add_product dan sub_product. Hanya saja product.save() tidak ada pada fungsi delete product.
+
+  > - Melakukan routing pada urls.py untuk fungsi delete_product serta membuat tampilan buttonnya di main.html.
 
 Tugas 3
 
