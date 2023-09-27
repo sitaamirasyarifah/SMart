@@ -20,11 +20,15 @@
         padding: 10px;
     }
 </style>
+
 <p>Kamu menyimpan {{ jumlah }} item pada aplikasi ini</p>
+
 <table borders="1" cellspacing="0" cellpadding="0">
     <tr>
         <th>Name</th>
         <th>Amount</th>
+        <th>Add One</th>
+        <th>Subtract One</th>
         <th>Price</th>
         <th>Description</th>
         <th>Date Added</th>
@@ -36,9 +40,30 @@
         <tr>
             <td>{{product.name}}</td>
             <td style ="text-align: center">{{product.amount}}</td>
-            <td>{{product.price}}</td>
+            <td style ="text-align: center">
+                <form method="post" action="{% url 'main:add_product' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit">+</button>
+                </form>
+            </td>
+            <td style ="text-align: center">
+                <form method="post" action="{% url 'main:sub_product' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit">-</button>
+                </form>
+            </td>
+            <td>Rp{{product.price}}</td>
             <td>{{product.description}}</td>
             <td>{{product.date_added}}</td>
+             <td style ="text-align: center">    <!--tombol delete -->
+                <form method="post" action="{% url 'main:delete_product' product.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit">🗑</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
 </table>

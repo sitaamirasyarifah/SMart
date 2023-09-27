@@ -1,19 +1,16 @@
-import datetime
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.contrib.auth import authenticate, login
-from django.shortcuts import redirect
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib import messages  
-from django.http import HttpResponse
-from django.core import serializers
-from django.http import HttpResponseRedirect
+from main.models import Product
 from main.forms import ProductForm
 from django.urls import reverse
-from django.shortcuts import render
-from main.models import Product
+from django.http import HttpResponse
+from django.core import serializers
+from django.shortcuts import redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+import datetime
 
 
 
@@ -96,3 +93,38 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def add_product(request, product_id=None):
+    if request.method == 'POST':
+        # Tambah jumlah stok produk sebanyak 1
+        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
+        product = Product.objects.get(id=product_id) #mendapatkan product
+
+        product.amount += 1
+        product.save()
+        return redirect('main:show_main')
+    
+    return render(request, 'main.html')
+
+def sub_product(request, product_id=None):
+    if request.method == 'POST':
+        # Mengurangi jumlah stok produk sebanyak 1
+        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
+        product = Product.objects.get(id=product_id) # mendapatkan product
+
+        if product.amount > 0:
+            product.amount -= 1
+            product.save()
+        return redirect('main:show_main')
+    
+    return render(request, 'main.html')
+
+def delete_product(request, product_id=None):
+    if request.method == 'POST':
+        #Menghapus product
+        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
+        product = Product.objects.get(id=product_id) # mendapatkan product
+        product.delete()    #otomatis menghapus product
+        return redirect('main:show_main')
+    
+    return render(request, 'main.html')
