@@ -1,88 +1,108 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>SMart - Sita Mart</h1>
+    <style>
+        .navbar-brand {
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+        background: #a51006;
+        background: linear-gradient(to right, #e90505, #fcb4b4);
+        }
+        .card-header{
+            font-weight: bold;
+        }
+        .konten{
+            margin-left: 20px; 
+            margin-right: 5px; 
+            margin-top: 5px; 
+            margin-bottom: 5px; 
+        }
+        
 
-    <h5>Name:</h5>
-    <p>{{name}}</p>
+    </style>
 
-    <h5>Class:</h5>
-    <p>{{class}}</p>
+    <!-- /* Navigation bar*/ -->
 
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+        <div class="container-fluid">           
+            <a class="navbar-brand" href="#">
+                SMart - Sita Mart 
+            </a>
 
-<style>
-    th{
-        text-align: center;
-        padding: 10px;
-    }
-    td{
-        border: 1px solid #000;
-        padding: 10px;
-    }
-</style>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<p>Kamu menyimpan {{ jumlah }} item pada aplikasi ini</p>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'main:logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'main:create_product' %}">Add New Product</a>
+                    </li>
+                </ul>
+            </div>
 
-<table borders="1" cellspacing="0" cellpadding="0">
-    <tr>
-        <th>Name</th>
-        <th>Amount</th>
-        <th>Add One</th>
-        <th>Subtract One</th>
-        <th>Price</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
+        </div> 
+    </nav>
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-    {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td style ="text-align: center">{{product.amount}}</td>
-            <td style ="text-align: center">
-                <form method="post" action="{% url 'main:add_product' product.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <button type="submit">+</button>
-                </form>
-            </td>
-            <td style ="text-align: center">
-                <form method="post" action="{% url 'main:sub_product' product.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <button type="submit">-</button>
-                </form>
-            </td>
-            <td>Rp{{product.price}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.date_added}}</td>
-             <td style ="text-align: center">    <!--tombol delete -->
-                <form method="post" action="{% url 'main:delete_product' product.id %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <button type="submit">🗑</button>
-                </form>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-
-<br />
-
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
+    <div class="konten">
+        <h5>Kamu menyimpan {{jumlah}} item pada aplikasi ini</h5>
     
-   
+        <div class="container">
+            <div class="row">
+                <!-- looping sebanyak jumlah product -->
+                {% for product in products %}
+                <div class="col-md-4">
+                    <div class="card border-dark mb-3" style="max-width: 18rem;">
+                        <div class="card-header text-center">{{product.name}}</div>
+                        <div class="card-body text-dark">
+                            <p class="card-text"> Price: Rp{{product.price}}</p>
+                            <p class="card-text">{{product.description}}</p>
+                            <div class="d-flex justify-content-between">
+                                <p class="card-text"> Jumlah: {{product.amount}}</p>
+                                <a style ="text-align: center"> <!--tombol tambah 1-->
+                                    <form method="post" action="{% url 'main:add_product' product.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <button type="submit">+</button>
+                                    </form>
+                                </a>
+                                <a style ="text-align: center"> <!--tombol kurang 1-->
+                                    <form method="post" action="{% url 'main:sub_product' product.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <button type="submit">-</button>
+                                    </form>
+                                </a>
+                                <a style ="text-align: center">    <!--tombol delete -->
+                                    <form method="post" action="{% url 'main:delete_product' product.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <button type="submit">🗑</button>
+                                    </form>
+                                </a>
+                                <a style ="text-align: center">    <!--tombol edit -->
+                                    <form method="post" action="{% url 'main:edit_product' product.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product_id" value="{{ product.id }}">
+                                        <button type="submit">Edit</button>
+                                    </form>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-transparent border-success">Date added: {{product.date_added}}</div>
+                    </div>
+                </div>
+        {% endfor %}
+    
+            </div>
+        </div>
+    
+        <br />
+        <h5>Sesi terakhir login: {{ last_login }}</h5>
+    </div>
+
 {% endblock content %}

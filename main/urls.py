@@ -1,3 +1,4 @@
+from main.views import edit_product
 from main.views import logout_user
 from main.views import login_user
 from main.views import register 
@@ -19,7 +20,8 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
-    path('add-product/<int:product_id>/', add_product, name='add_product'),
-    path('sub-product/<int:product_id>/', sub_product, name='sub_product'),
+    path('add_product/<int:product_id>/', add_product, name='add_product'),
+    path('sub_product/<int:product_id>/', sub_product, name='sub_product'),
     path('delete/<int:product_id>/', delete_product, name='delete_product'),
+    path('edit_product/<int:product_id>', edit_product, name='edit_product'),
 ]
