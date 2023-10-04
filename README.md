@@ -3,6 +3,50 @@
 #NPM : 2206023023
 PBP B
 
+Tugas 5
+
+1. Jelaskan manfaat dari setiap jenis selector CSS dan kapan tepat menggunakannya.
+Jawab : 
+Element Selector: Untuk mengubah properti elemen dengan tag yang sama, cocok untuk aplikasi gaya umum pada elemen serupa.
+ID Selector: Digunakan untuk elemen dengan ID unik, cocok untuk merubah gaya elemen tertentu.
+Class Selector: Mengubah gaya sekelompok elemen dengan karakteristik yang sama.
+HTML5 Tag yang umum:
+
+2.HTML tag yang saya ketahui :
+Jawab :
+<p>: Untuk membuat paragraf.
+<title>: Untuk judul halaman.
+<body>: Untuk badan halaman.
+<h1> hingga <h6>: Untuk judul dengan ukuran berbeda.
+<b>: Untuk teks tebal.
+<style>: Untuk mengatur gaya elemen dengan CSS.
+
+3.Perbedaan antara margin dan padding:
+Jawab :
+Margin: Mengatur jarak antara elemen dengan elemen lainnya di luar border, hanya mengatur jarak.
+Padding: Mengatur jarak antara konten elemen dan tepi elemennya, juga mengatur latar belakang dan warna elemen.
+Perbedaan antara Tailwind CSS dan Bootstrap:
+
+4. Perbedaan antara framework CSS Tailwind dan Bootstrap
+Jawab :
+Tailwind CSS: Menggabungkan kelas utilitas yang sudah didefinisikan, lebih fleksibel, lebih sulit untuk dipelajari.
+Bootstrap: Menggunakan komponen yang sudah didefinisikan, lebih konsisten, lebih mudah dipelajari.
+
+
+5. Penjelasan step by step :
+Jawab :
+Menambahkan Bootstrap ke aplikasi.
+Merancang halaman login dengan card dan mengubah latar belakang.
+Merancang halaman create product dengan mengubah latar belakang dan margin.
+Merancang halaman register dengan card, margin, dan latar belakang.
+Merancang halaman main dengan navigasi bar Bootstrap, card untuk produk, tombol edit, dan mengubah latar belakang.
+Menambahkan tombol edit product dan membuat halaman edit_product.
+Membuat readme dan melakukan git add, commit dan push ke GitHub.
+
+
+
+
+
 Tugas 4
 1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
 > Jawab :
