@@ -18,89 +18,171 @@
             margin-top: 5px; 
             margin-bottom: 5px; 
         }
+        #lastLogin{
+            font-family: "times new roman", sans-serif;
+            font-size: medium;
+            justify-content: flex-end;
+        }
+        #pesan1{
+            font-family: 'Poppins';
+            font-size: 25px;
+        }
+        #pesan2{
+            font-weight: bold;
+            font-size: 15px;
+        }
         
 
     </style>
 
-    <!-- /* Navigation bar*/ -->
+<!-- /* Navigation bar*/ -->
 
-    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
-        <div class="container-fluid">           
-            <a class="navbar-brand" href="#">
-                SMart - Sita Mart 
-            </a>
+<nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+    <div class="container-fluid">           
+        <a class="navbar-brand" href="#">
+            SMart - Sita Mart
+        </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'main:logout' %}">Logout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'main:create_product' %}">Add New Product</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div> 
-    </nav>
-
-    <div class="konten">
-        <h5>Kamu menyimpan {{jumlah}} item pada aplikasi ini</h5>
-    
-        <div class="container">
-            <div class="row">
-                <!-- looping sebanyak jumlah product -->
-                {% for product in products %}
-                <div class="col-md-4">
-                    <div class="card border-dark mb-3" style="max-width: 18rem;">
-                        <div class="card-header text-center">{{product.name}}</div>
-                        <div class="card-body text-dark">
-                            <p class="card-text"> Price: Rp{{product.price}}</p>
-                            <p class="card-text">{{product.description}}</p>
-                            <div class="d-flex justify-content-between">
-                                <p class="card-text"> Jumlah: {{product.amount}}</p>
-                                <a style ="text-align: center"> <!--tombol tambah 1-->
-                                    <form method="post" action="{% url 'main:add_product' product.id %}">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'main:logout' %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'main:create_product' %}">Add New Product</a>
+                </li>
+                <li>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="form" onsubmit="return false;">
                                         {% csrf_token %}
-                                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                                        <button type="submit">+</button>
+                                        <div class="mb-3">
+                                            <label for="name" class="col-form-label">Name:</label>
+                                            <input type="text" class="form-control" id="name" name="name"></input>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="amount" class="col-form-label">Amount:</label>
+                                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="price" class="col-form-label">Price:</label>
+                                            <input type="number" class="form-control" id="price" name="price"></input>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="col-form-label">Description:</label>
+                                            <textarea class="form-control" id="description" name="description"></textarea>
+                                        </div>
                                     </form>
-                                </a>
-                                <a style ="text-align: center"> <!--tombol kurang 1-->
-                                    <form method="post" action="{% url 'main:sub_product' product.id %}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                                        <button type="submit">-</button>
-                                    </form>
-                                </a>
-                                <a style ="text-align: center">    <!--tombol delete -->
-                                    <form method="post" action="{% url 'main:delete_product' product.id %}">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="product_id" value="{{ product.id }}">
-                                        <button type="submit">🗑</button>
-                                    </form>
-                                </a>
-                                <a style ="text-align: center">    <!--tombol edit -->
-                                    <a href="{% url 'main:edit_product' product.id %}">
-                                        <button>Edit</button>
-                                    </form>
-                                </a>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                                </div>
                             </div>
                         </div>
-                        <div class="card-footer bg-transparent border-success">Date added: {{product.date_added}}</div>
                     </div>
-                </div>
-        {% endfor %}
-    
-            </div>
+                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+                </li>
+            </ul>
         </div>
-    
-        <br />
-        <h5>Sesi terakhir login: {{ last_login }}</h5>
+
+        <div>
+            <h5 id="lastLogin">Sesi terakhir login: {{ last_login }}</h5>
+        </div>
+
+    </div> 
+</nav>
+
+<div class="konten">
+    <h3 id="pesan1">Selamat datang di SMart - Sita Mart {{name}}! </h5>
+    <br/>
+    <h5 id="pesan2">Kamu menyimpan {{jumlah}} item pada aplikasi ini</h4>
+
+    <br/>
+
+    <div id="cardProduct">
+        <div class="row" id="product_card"></div>
     </div>
+
+
+</div>
+
+<script>
+    async function getProducts() {
+        return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+        const card = document.getElementById("product_card");
+        card.innerHTML=""
+        const products = await getProducts()
+
+        products.forEach((item) => {
+            // Membuat elemen kartu untuk produk
+            const cardElement = document.createElement('div')
+            cardElement.classList.add('card', 'border-dark', 'mb-4', 'mx-1')
+            cardElement.style.maxWidth = '18rem'
+
+            // Mengisi elemen kartu dengan data produk
+            cardElement.innerHTML = `
+                <div class="card-header text-center">${item.fields.name}</div>
+                    <div class="card-body text-dark">
+                        <p class="card-text"> Price: Rp${item.fields.price}</p>
+                        <p class="card-text">${item.fields.description}</p>
+                        <div class="d-flex justify-content-between">
+                            <p class="card-text"> Jumlah: ${item.fields.amount}</p>
+                            <a style ="text-align: center">    <!--tombol add 1 -->
+                                <a href="add-one/${item.pk}">
+                                    <button>+</button>
+                                </a>
+                            </a>
+                            <a style ="text-align: center">    <!--tombol dec 1 -->
+                                <a href="dec-one/${item.pk}">
+                                    <button>-</button>
+                            </a>
+                            <a style ="text-align: center">    <!--tombol delete -->
+                                <a href="delete/${item.pk}">
+                                    <button>🗑</button>
+                            </a>
+                            <a style ="text-align: center">    <!--tombol edit -->
+                                <a href="edit-product/${item.pk}">
+                                    <button>Edit</button>
+                            </a>
+                        </div>
+                    </div>
+                <div class="card-footer bg-transparent border-success">Date added: ${item.fields.date_added}</div>
+            `;
+            
+            // Menambahkan elemen kartu ke dalam elemen kartu utama
+            card.appendChild(cardElement);
+        });
+    }
+
+    refreshProducts();
+
+    function addProduct() {
+        fetch("{% url 'main:add_product_ajax' %}", {
+            method: "POST",
+            body: new FormData(document.querySelector('#form'))
+        }).then(refreshProducts)
+
+        document.getElementById("form").reset()
+        return false
+    }
+
+    document.getElementById("button_add").onclick = addProduct
+
+
+</script>
 
 {% endblock content %}

@@ -7,6 +7,8 @@ from django.urls import path
 from main.views import add_product
 from main.views import sub_product
 from main.views import delete_product
+from main.views import  get_product_json, add_product_ajax
+
 
 app_name = 'main'
 
@@ -24,4 +26,6 @@ urlpatterns = [
     path('sub_product/<int:product_id>/', sub_product, name='sub_product'),
     path('delete/<int:product_id>/', delete_product, name='delete_product'),
     path('edit-product/<int:id>', edit_product, name='edit_product'),
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-product-ajax/', add_product_ajax, name='add_product_ajax')
 ]
