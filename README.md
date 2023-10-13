@@ -3,6 +3,8 @@
 #NPM : 2206023023
 PBP B
 
+Tugas 6
+
 Tugas 5
 
 1. Jelaskan manfaat dari setiap jenis selector CSS dan kapan tepat menggunakannya.
