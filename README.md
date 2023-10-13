@@ -4,24 +4,70 @@
 PBP B
 
 Tugas 6
+1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming
+Jawab :
+- Synchronus programming
+  Task akan dieksekusi secara satu persatu sesuai urutan dan prioritas task. Sehingga beberapa task tidak dapat dieksekusi secara bersamaan.
+  Karena task dieksekusi satu persatu, maka waktu yang diperlukan untuk menyelesaikan semua task biasanya lebih lama.
+
+- Asynchronus programming
+  Tidak terikat pada I/O protocol, sehingga proses eksekusi program dilakukan secara independent dan dapat dilakukan secara bersamaan tanpa harus menunggu tugas sebelumnya selesai.
+  Waktu total yang diperlukan untuk menyelesaikan task lebih sedikit.
+
+2. Dalam penggunaan JavaScript dan AJAX, paradigma event-driven programming diterapkan. Paradigma ini mengacu pada cara program dijalankan berdasarkan event yang terjadi, baik itu dipicu oleh pengguna atau sistem. Sebagai contoh, saat tombol dengan ID "button_add" pada formulir AJAX ditekan, maka fungsi "addProduct" akan segera dieksekusi. Penerapannya dalam tugas ini, yaitu pada saat button dengan id button add (button add produk yang ada di dalam AJAX saat ingin submit form) diklik, akan langsung menjalankan function addProduct.
+   Berikut kodenya:
+- document.getElementById("button_add").onclick = addProduct
+
+3.Penerapan asynchronous programming pada AJAX melibatkan beberapa aspek penting:
+- Fungsi async dan await: Fungsi async digunakan untuk menandai sebuah fungsi sebagai fungsi yang dapat mengembalikan nilai secara asinkron, sementara fungsi await digunakan untuk menunggu hasil dari fungsi async. Ini memungkinkan tugas-tugas asinkron untuk berjalan tanpa menghentikan eksekusi program.
+- Callback functions: Ini adalah fungsi yang akan dipanggil ketika permintaan AJAX selesai. Mereka memungkinkan Anda untuk mengatasi tugas-tugas yang harus dijalankan setelah permintaan AJAX selesai secara asinkron.
+- XMLHttpRequest atau fetch: Dua opsi untuk membuat permintaan HTTP asinkron dalam JavaScript. Mereka memungkinkan JavaScript untuk terus menjalankan kode lain tanpa harus menunggu hasil permintaan.
+- Penerapan asynchronous programming pada AJAX memungkinkan pemrosesan permintaan ke server secara asinkron, sehingga membuat antarmuka lebih responsif dan interaktif.
+
+4. Dalam hal perbedaan antara Fetch API dan library jQuery dalam AJAX:
+   - Fetch API:
+     Tidak memerlukan unduhan library tambahan, karena Fetch API adalah bagian dari JavaScript.
+     Menggunakan teknologi yang lebih modern dan mendapat pembaruan teratur dari komunitas pengembang.
+     Lebih mudah dalam menangani respons asinkron karena menggunakan Promise.
+
+   - jQuery:
+     Cocok untuk proyek dengan tingkat kompatibilitas yang tinggi di berbagai browser.
+     Menyediakan antarmuka yang lebih kompleks dan spesifik.
+     Lebih hemat waktu karena memiliki fitur-fitur yang disederhanakan untuk keperluan UI.
+     Dalam memilih antara Fetch API dan jQuery, keputusan sebaiknya didasarkan pada tujuan dan spesifikasi aplikasi web yang akan dibuat. Jika kebutuhan aplikasi lebih modern dan simpel, maka Fetch API bisa menjadi pilihan yang baik. Namun, jika aplikasi memerlukan UI yang canggih dan kompleks, maka penggunaan jQuery bisa lebih sesuai.
+
+5. Selain itu, penerapan checklist untuk proyek melibatkan langkah-langkah seperti:
+   - Membuat fungsi "get product json" di "views.py" yang mengimplementasikan filter user.
+   - Membuat routing URL untuk "get product" di "urls.py".
+   - Menghapus card yang ada di bagian HTML pada "main.html," tetapi mempertahankan elemen div dengan ID "product_card" agar dapat dipanggil melalui AJAX.
+   - Membuat script AJAX yang mencakup fungsi "getProduct" yang dinyatakan sebagai asinkron, serta fungsi "refreshProduct."
+   - Membuat fungsi "add_product" AJAX di "views.py" dan menentukan routing URL-nya.
+   - Membuat modal Bootstrap berupa tabel untuk mengisi formulir "add new product," seperti harga, dan lainnya di HTML.
+   - Membuat tombol "add new product."
+   - Membuat script AJAX POST untuk tombol "addProduct" saat formulir disubmit dan menambahkan fungsi "onclick" saat tombol "add product" ditekan.
+   - Melakukan perintah "collectstatic" di terminal.
+   - Melakukan deploy aplikasi web.
+
+
 
 Tugas 5
 
 1. Jelaskan manfaat dari setiap jenis selector CSS dan kapan tepat menggunakannya.
 Jawab : 
-Element Selector: Untuk mengubah properti elemen dengan tag yang sama, cocok untuk aplikasi gaya umum pada elemen serupa.
-ID Selector: Digunakan untuk elemen dengan ID unik, cocok untuk merubah gaya elemen tertentu.
-Class Selector: Mengubah gaya sekelompok elemen dengan karakteristik yang sama.
-HTML5 Tag yang umum:
+- Element Selector: Untuk mengubah properti elemen dengan tag yang sama, cocok untuk aplikasi gaya umum pada elemen serupa.
+- ID Selector: Digunakan untuk elemen dengan ID unik, cocok untuk merubah gaya elemen tertentu.
+- Class Selector: Mengubah gaya sekelompok elemen dengan karakteristik yang sama.
+
 
 2.HTML tag yang saya ketahui :
 Jawab :
-<p>: Untuk membuat paragraf.
-<title>: Untuk judul halaman.
-<body>: Untuk badan halaman.
-<h1> hingga <h6>: Untuk judul dengan ukuran berbeda.
-<b>: Untuk teks tebal.
-<style>: Untuk mengatur gaya elemen dengan CSS.
+>  - &lt;p&gt; --> untuk membuat pargraf
+>  - &lt;title&gt; --> Untuk judul halaman.
+>  - &lt;body&gt; ---> Untuk badan halaman.
+>  - &lt;h1&gt; sampai - &lt;h6&gt; --> Untuk judul dengan ukuran berbeda.
+>  - &lt;b&gt; --> Untuk teks tebal.
+>  - &lt;style&gt; --> Untuk mengatur gaya elemen dengan CSS.
+
 
 3.Perbedaan antara margin dan padding:
 Jawab :
