@@ -95,39 +95,30 @@ def logout_user(request):
     return response
 
 def add_product(request, product_id=None):
-    if request.method == 'POST':
         # Tambah jumlah stok produk sebanyak 1
-        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
-        product = Product.objects.get(id=product_id) #mendapatkan product
+        product = Product.objects.get(pk = id) #untuk dapat product
 
         product.amount += 1
         product.save()
         return redirect('main:show_main')
-    
-    return render(request, 'main.html')
 
 def sub_product(request, product_id=None):
-    if request.method == 'POST':
-        # Mengurangi jumlah stok produk sebanyak 1
-        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
-        product = Product.objects.get(id=product_id) # mendapatkan product
+    # Tambah jumlah stok produk sebanyak 1
+    product = Product.objects.get(pk=id) #untuk dapat product
 
-        if product.amount > 0:
+    if product.amount > 0:
+        if product.amount==1:
+            product.delete()
+        else:
             product.amount -= 1
             product.save()
-        return redirect('main:show_main')
-    
-    return render(request, 'main.html')
+    return redirect('main:show_main')
 
 def delete_product(request, product_id=None):
-    if request.method == 'POST':
-        #Menghapus product
-        product_id = request.POST.get('product_id')  # mendapatkan id product yang sesuai tombol
-        product = Product.objects.get(id=product_id) # mendapatkan product
-        product.delete()    #otomatis menghapus product
-        return redirect('main:show_main')
-    
-    return render(request, 'main.html')
+    #hapus product
+    product = Product.objects.get(pk=id) #untuk dapat product
+    product.delete()    #otomatis hapus product
+    return redirect('main:show_main')
 
 def edit_product(request, id):
     # Get product berdasarkan ID
