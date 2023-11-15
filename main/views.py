@@ -94,7 +94,7 @@ def logout_user(request):
     response.delete_cookie('last_login')
     return response
 
-def add_product(request, product_id=None):
+def add_product(request, id):
         # Tambah jumlah stok produk sebanyak 1
         product = Product.objects.get(pk = id) #untuk dapat product
 
@@ -102,7 +102,7 @@ def add_product(request, product_id=None):
         product.save()
         return redirect('main:show_main')
 
-def sub_product(request, product_id=None):
+def sub_product(request, id):
     # Tambah jumlah stok produk sebanyak 1
     product = Product.objects.get(pk=id) #untuk dapat product
 
@@ -114,7 +114,7 @@ def sub_product(request, product_id=None):
             product.save()
     return redirect('main:show_main')
 
-def delete_product(request, product_id=None):
+def delete_product(request, id):
     #hapus product
     product = Product.objects.get(pk=id) #untuk dapat product
     product.delete()    #otomatis hapus product
